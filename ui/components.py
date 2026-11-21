@@ -75,6 +75,27 @@ def section_status(sections: dict) -> None:
     _html("".join(rows))
 
 
+def stat_row(items) -> None:
+    """Quiet row of large numerals. items: list of (value, label)."""
+    cells = "".join(
+        f'<div class="riq-stat"><div class="riq-stat-value">{escape(str(v))}</div>'
+        f'<div class="riq-stat-label">{escape(label)}</div></div>'
+        for v, label in items
+    )
+    _html(f'<div class="riq-stats">{cells}</div>')
+
+
+def history_toggle() -> bool:
+    """Opt-in switch for saving analyses to history. Off by default; state lives in session_state['save_history']."""
+    on = st.toggle("Save analyses to history", value=st.session_state.get("save_history", False))
+    st.session_state["save_history"] = on
+    st.markdown(
+        '<div class="riq-caption">Off by default. Stores only the job title, date, scores and skill lists.</div>',
+        unsafe_allow_html=True,
+    )
+    return on
+
+
 def empty_state(message: str) -> None:
     _html(f'<div class="riq-empty">{escape(message)}</div>')
 

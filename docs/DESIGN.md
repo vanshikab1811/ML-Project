@@ -59,6 +59,8 @@ Newsreader is also used for the 24px job-title heading (`.riq-heading`) on resul
 
 The Learning roadmap reads `match_results` for its gaps and `jobs` for frequency. The recommendations contract has no category or project description, so the page gets category from `adapters.skill_category(skill)` and shows no description.
 
+`save_history` (bool, default false) is the opt-in switch for History. Saved records live in `database/resumeiq.db` through `ui/history_store.py` and hold only job title, date, scores and skill lists, never resume text or contact details. Other keys: `history_view` (record id being viewed), `confirm_delete_all` (bool).
+
 `resume_file_id` (tuple of file name and size) is an internal marker so the same upload is not re-analysed on each rerun.
 
 The UI calls `src/` only through `ui/adapters.py` (`load_resume(file)`, which raises `ResumeLoadError` with kind `empty | unsupported | corrupted | text_poor`).

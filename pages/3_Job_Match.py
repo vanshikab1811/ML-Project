@@ -7,6 +7,7 @@ from ui.adapters import DEFAULT_WEIGHTS, ResumeLoadError, analyse_job, load_job_
 from ui.components import (
     component_bars,
     empty_state,
+    history_toggle,
     note,
     page_header,
     score_display,
@@ -14,6 +15,7 @@ from ui.components import (
     skill_chips,
 )
 from ui.theme import BORDER, NEUTRAL, TEMPLATE_NAME, setup_page
+from ui.history_store import save_analysis
 
 setup_page("Job match")
 page_header("Job match", "Compare the resume with one job description.")
@@ -52,6 +54,7 @@ with tab_paste:
 with tab_upload:
     job_file = st.file_uploader("Job description file", type=["pdf", "docx"], label_visibility="collapsed")
 
+history_toggle()
 if st.button("Analyse match", type="primary"):
     text, error = None, None
     if pasted.strip():
@@ -67,6 +70,9 @@ if st.button("Analyse match", type="primary"):
         note(error)
     elif text is not None:
         st.session_state["current_job"] = analyse_job(text)
+        if st.session_state.get("save_history"):
+            _job = st.session_state["current_job"]
+            save_analysis(_job["title"], score_match(resume, _job))
 
 job = st.session_state.get("current_job")
 if job is None:
