@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Newsreader:opsz,wght@6..72,400&display=swap");
+
+:root {
+  --bg: #F1F7F7;
+  --panel: #D5E5E5;
+  --line: #BDD7D8;
+  --neutral: #DDD3D3;
+  --accent: #F7CBCA;
+  --text: #5D6B6B;
+  --text-70: rgba(93, 107, 107, 0.7);
+  --radius: 6px;
+}
+
+/* ---------- base ---------- */
+html, body, [class*="st-"], .stApp, button, input, textarea, select {
+  font-family: "DM Sans", sans-serif;
+}
+.stApp { background: var(--bg); color: var(--text); }
+.stApp p, .stApp li, .stApp label, .stApp span, .stApp div { color: var(--text); }
+.stApp p, .stApp li { font-size: 15px; line-height: 1.6; }
+.stApp * { box-shadow: none !important; }
+
+/* hide default chrome */
+#MainMenu, footer,
+header[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"] { display: none !important; visibility: hidden; }
+
+.block-container {
+  max-width: 980px;
+  padding: 3.5rem 2rem 5rem 3rem;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ---------- sidebar ---------- */
+[data-testid="stSidebar"] {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+[data-testid="stSidebar"] > div:first-child { padding-top: 1.5rem; }
+[data-testid="stSidebarNav"] ul { padding: 0 0.5rem; gap: 2px; }
+/* entry page (app.py) only redirects, so it is not listed */
+[data-testid="stSidebarNav"] li:first-child { display: none; }
+[data-testid="stSidebarNav"] a,
+[data-testid="stSidebarNavLink"] {
+  background: transparent !important;
+  border-radius: var(--radius);
+  padding: 0.35rem 0.75rem;
+  text-decoration: none;
+  border: 0;
+}
+[data-testid="stSidebarNav"] a span,
+[data-testid="stSidebarNavLink"] span {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 400;
+}
+[data-testid="stSidebarNav"] a:hover,
+[data-testid="stSidebarNavLink"]:hover { background: rgba(189, 215, 216, 0.5) !important; }
+[data-testid="stSidebarNav"] a[aria-current="page"],
+[data-testid="stSidebarNavLink"][aria-current="page"] { background: var(--line) !important; }
+[data-testid="stSidebarNav"] a[aria-current="page"] span,
+[data-testid="stSidebarNavLink"][aria-current="page"] span { font-weight: 500; }
+.riq-brand {
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0 1.25rem 0.75rem;
+}
+
+/* ---------- type ---------- */
+.riq-title {
+  font-family: "Newsreader", serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 0.35rem 0;
+  color: var(--text);
+}
+.riq-subtitle { font-size: 15px; margin: 0 0 2rem 0; max-width: 62ch; color: var(--text-70); }
+.riq-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  margin: 2rem 0 0.75rem 0;
+  font-weight: 500;
+}
+.riq-caption { font-size: 13px; opacity: 0.7; line-height: 1.5; }
+
+/* ---------- score ---------- */
+.riq-score { margin: 0.5rem 0 1.25rem 0; max-width: 420px; }
+.riq-score-value {
+  font-family: "Newsreader", serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1;
+}
+.riq-score-unit { font-family: "Newsreader", serif; font-size: 24px; opacity: 0.7; margin-left: 2px; }
+.riq-bar { height: 3px; background: rgba(189, 215, 216, 0.6); border-radius: 6px; margin: 0.75rem 0 0.6rem 0; overflow: hidden; }
+.riq-bar > span { display: block; height: 100%; background: var(--text); border-radius: 6px; }
+
+/* ---------- component bars ---------- */
+.riq-comp { margin: 0 0 0.9rem 0; max-width: 520px; }
+.riq-comp-row { display: flex; justify-content: space-between; font-size: 14px; }
+.riq-comp .riq-bar { margin: 0.3rem 0 0 0; }
+
+/* ---------- chips ---------- */
+.riq-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 0.5rem 0; }
+.riq-chip {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  padding: 6px 11px;
+  border-radius: 999px;
+  color: var(--text);
+}
+.riq-chip-matched { background: var(--line); }
+.riq-chip-missing { background: var(--accent); }
+.riq-chip-extra { background: var(--neutral); }
+
+/* ---------- empty state and note ---------- */
+.riq-empty {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem;
+  font-size: 15px;
+  max-width: 560px;
+}
+.riq-note {
+  border-left: 2px solid var(--line);
+  padding: 0.1rem 0 0.1rem 0.9rem;
+  margin: 0.75rem 0;
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.riq-note p { font-size: 13px; margin: 0; }
+
+/* ---------- dividers ---------- */
+hr { border: 0; border-top: 1px solid var(--line); margin: 1.5rem 0; }
+
+/* ---------- buttons ---------- */
+.stApp button[data-testid^="stBaseButton"],
+.stApp .stDownloadButton button {
+  border-radius: var(--radius);
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  transition: none;
+}
+.stApp button[data-testid="stBaseButton-primary"],
+.stApp button[data-testid="stBaseButton-primaryFormSubmit"] {
+  background: var(--text);
+  border: 1px solid var(--text);
+}
+.stApp button[data-testid="stBaseButton-primary"] *,
+.stApp button[data-testid="stBaseButton-primaryFormSubmit"] * { color: var(--bg) !important; }
+.stApp button[data-testid="stBaseButton-primary"]:hover,
+.stApp button[data-testid="stBaseButton-primaryFormSubmit"]:hover {
+  background: rgba(93, 107, 107, 0.88);
+  border-color: var(--text);
+}
+.stApp button[data-testid="stBaseButton-secondary"],
+.stApp button[data-testid="stBaseButton-secondaryFormSubmit"],
+.stApp button[data-testid="stBaseButton-tertiary"] {
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.stApp button[data-testid="stBaseButton-secondary"]:hover,
+.stApp button[data-testid="stBaseButton-secondaryFormSubmit"]:hover {
+  background: var(--panel);
+  border-color: var(--line);
+}
+.stApp button:focus, .stApp button:focus-visible,
+.stApp input:focus, .stApp textarea:focus,
+.stApp [data-baseweb="select"] > div:focus-within,
+.stApp [data-baseweb="input"]:focus-within,
+.stApp [data-baseweb="textarea"]:focus-within {
+  outline: 2px solid var(--text) !important;
+  outline-offset: 1px;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- text inputs, text area, select ---------- */
+.stApp [data-baseweb="input"],
+.stApp [data-baseweb="textarea"],
+.stApp [data-baseweb="base-input"],
+.stApp [data-baseweb="select"] > div {
+  background: var(--bg) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+}
+.stApp textarea, .stApp input { background: var(--bg) !important; color: var(--text) !important; font-size: 15px; }
+.stApp textarea::placeholder, .stApp input::placeholder { color: var(--text-70) !important; }
+.stApp label p, .stApp [data-testid="stWidgetLabel"] p { font-size: 13px; opacity: 0.85; }
+.stApp [data-baseweb="select"] svg { fill: var(--text); }
+[data-baseweb="popover"] > div, [data-baseweb="menu"] {
+  background: var(--bg) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+[data-baseweb="menu"] li { background: var(--bg) !important; }
+[data-baseweb="menu"] li:hover, [data-baseweb="menu"] li[aria-selected="true"] { background: var(--panel) !important; }
+
+/* ---------- file uploader ---------- */
+[data-testid="stFileUploaderDropzone"] {
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+[data-testid="stFileUploaderDropzone"] svg { fill: var(--text); }
+[data-testid="stFileUploaderDropzone"] small { font-size: 13px; opacity: 0.7; }
+[data-testid="stFileUploaderFile"] { border-radius: var(--radius); }
+
+/* ---------- tabs ---------- */
+.stApp [data-baseweb="tab-list"] { gap: 1.5rem; border-bottom: 1px solid var(--line); }
+.stApp [data-baseweb="tab-border"] { background: var(--line); height: 1px; }
+.stApp [data-baseweb="tab-highlight"] { background: var(--text); height: 2px; }
+.stApp button[data-baseweb="tab"] { background: transparent; padding: 0.5rem 0; border-radius: 0; }
+.stApp button[data-baseweb="tab"] p { font-size: 15px; }
+
+/* ---------- expander ---------- */
+[data-testid="stExpander"] details {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+[data-testid="stExpander"] summary { padding: 0.65rem 1rem; }
+[data-testid="stExpander"] summary:hover { background: var(--panel); border-radius: var(--radius); }
+[data-testid="stExpander"] summary svg { fill: var(--text); color: var(--text); }
+
+/* ---------- dataframe and plotly ---------- */
+[data-testid="stDataFrame"] {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+[data-testid="stPlotlyChart"] { border: 0; }
+
+/* ---------- alerts ---------- */
+[data-testid="stAlert"] {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
