@@ -51,6 +51,11 @@ for a in history:
             st.session_state.pop("history_view", None)
         st.rerun()
 
+st.markdown(
+    '<div class="riq-caption" style="margin-top:8px">Scores are estimated resume-to-job alignment, not hiring predictions.</div>',
+    unsafe_allow_html=True,
+)
+
 # ---- delete all with confirmation ----
 st.write("")
 if st.session_state.get("confirm_delete_all"):

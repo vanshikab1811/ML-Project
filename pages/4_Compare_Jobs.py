@@ -142,7 +142,8 @@ else:
     )
 st.markdown(
     f'<div class="riq-caption">Showing {len(view)} of {len(df)} jobs. '
-    f'Sorted by {escape(sort_by.lower())}, {"ascending" if ascending else "descending"}.</div>',
+    f'Sorted by {escape(sort_by.lower())}, {"ascending" if ascending else "descending"}. '
+    "Scores are estimated resume-to-job alignment, not hiring predictions.</div>",
     unsafe_allow_html=True,
 )
 
