@@ -57,6 +57,8 @@ Template `resumeiq` is registered and set as the Plotly default by importing `ui
 
 Newsreader is also used for the 24px job-title heading (`.riq-heading`) on result pages. `skill_chips(..., soft=True)` lightens missing chips to 50% (preferred gaps).
 
+The Learning roadmap reads `match_results` for its gaps and `jobs` for frequency. The recommendations contract has no category or project description, so the page gets category from `adapters.skill_category(skill)` and shows no description.
+
 `resume_file_id` (tuple of file name and size) is an internal marker so the same upload is not re-analysed on each rerun.
 
 The UI calls `src/` only through `ui/adapters.py` (`load_resume(file)`, which raises `ResumeLoadError` with kind `empty | unsupported | corrupted | text_poor`).

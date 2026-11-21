@@ -92,3 +92,45 @@ def score_match(resume_analysis: dict, job_analysis: dict, weights: dict | None 
     )
     result["weights"] = weights
     return result
+
+
+# TODO: replace with the category column of data/skills.csv (your skill taxonomy).
+_MOCK_CATEGORIES = {
+    "Python": "Programming", "SQL": "Programming", "Docker": "Cloud/DevOps", "AWS": "Cloud/DevOps",
+    "MLOps": "Cloud/DevOps", "TensorFlow": "Machine Learning", "PyTorch": "Machine Learning",
+    "Scikit-learn": "Machine Learning", "Statistics": "Machine Learning", "Excel": "Data",
+    "Power BI": "Data", "Tableau": "Data", "Data Visualization": "Data", "Pandas": "Data",
+    "REST API": "Web/Backend", "Flask": "Web/Backend", "PostgreSQL": "Web/Backend", "Redis": "Web/Backend",
+}
+
+
+def skill_category(skill: str) -> str:
+    """Return the taxonomy category for a skill, or "Other" if unknown."""
+    return _MOCK_CATEGORIES.get(skill, "Other")
+
+
+def get_recommendations(missing_skills: list, jobs: list) -> list:
+    """Return the recommendations contract (see docs/ui_contracts.md) for the given gaps.
+
+    missing_skills: skills missing from the resume. jobs: list of job_analysis dicts
+    (used to see how often, and how strongly, each skill is requested).
+    """
+    # TODO: replace the mock below with src/recommendations.py, for example:
+    #   from src.recommendations import get_recommendations as _get_recommendations
+    #   return _get_recommendations(missing_skills, jobs)
+    curated = {r["skill"].lower(): r for r in mock_data.get_recommendations()}
+    required = {s.lower() for j in jobs for s in j["required_skills"]}
+    recs = []
+    for skill in dict.fromkeys(missing_skills):
+        rec = curated.get(skill.lower())
+        if rec is None:
+            rec = {
+                "skill": skill,
+                "priority": "medium" if skill.lower() in required else "low",
+                "reason": f"{skill} is requested in the jobs you are targeting and was not found in the resume.",
+                "project_name": f"Small {skill} project",
+                "learning_action": f"Work through an introductory {skill} tutorial, then apply it in a small project.",
+                "resource_url": "https://www.google.com/search?q=" + skill.replace(" ", "+") + "+tutorial",
+            }
+        recs.append(rec)
+    return recs
