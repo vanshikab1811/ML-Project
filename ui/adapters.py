@@ -36,3 +36,4 @@ def load_resume(file) -> dict:
     #       raise ResumeLoadError("text_poor")
     #   return analyse_resume(text)                        # must match the resume_analysis shape
     return mock_data.get_resume_analysis()
+
