@@ -78,12 +78,12 @@ for priority in PRIORITIES:
             )
             with learn:
                 st.markdown(
-                    f'<div class="riq-label" style="margin-top:0.5rem">Learn</div><p>{escape(r["learning_action"])}</p>{link}',
+                    f'<div class="riq-label" style="margin-top:8px">Learn</div><p>{escape(r["learning_action"])}</p>{link}',
                     unsafe_allow_html=True,
                 )
             with build:
                 st.markdown(
-                    f'<div class="riq-label" style="margin-top:0.5rem">Build</div><p>{escape(r["project_name"])}</p>',
+                    f'<div class="riq-label" style="margin-top:8px">Build</div><p>{escape(r["project_name"])}</p>',
                     unsafe_allow_html=True,
                 )
 

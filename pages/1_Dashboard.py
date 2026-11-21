@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from ui.adapters import skill_category
-from ui.components import empty_state, page_header, section_label, stat_row
+from ui.components import MATCH_CAPTION, empty_state, page_header, section_label, stat_row
 from ui.history_store import list_analyses
 from ui.theme import ACCENT, BORDER, TEMPLATE_NAME, setup_page
 
@@ -37,6 +37,7 @@ stat_row(
         (top_gap, "most common gap"),
     ]
 )
+st.markdown(f'<div class="riq-caption">Scores are out of 100. {MATCH_CAPTION}</div>', unsafe_allow_html=True)
 
 # ---- charts ----
 left, right = st.columns(2, gap="large")
@@ -119,3 +120,4 @@ rows = "".join(
     for a in history[:5]
 )
 st.markdown(rows, unsafe_allow_html=True)
+st.markdown(f'<div class="riq-caption" style="margin-top:8px">Scores are out of 100. {MATCH_CAPTION}</div>', unsafe_allow_html=True)
