@@ -141,6 +141,27 @@ header[data-testid="stHeader"],
   .riq-comp, .riq-score, .riq-empty, .riq-status { max-width: 100%; }
 }
 
+/* ---------- roadmap blocks ---------- */
+[data-testid="stVerticalBlockBorderWrapper"] {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.riq-skill-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.riq-skill-name { font-size: 17px; font-weight: 500; }
+.riq-skill-cat { font-size: 13px; opacity: 0.7; margin-left: auto; }
+.riq-tag {
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: var(--text);
+}
+.riq-tag-high { background: var(--accent); }
+.riq-tag-medium { background: var(--neutral); }
+.riq-tag-low { background: var(--line); }
+.riq-reason { margin: 0.4rem 0 0.25rem 0; }
+[data-testid="stMarkdownContainer"] a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
 /* ---------- empty state and note ---------- */
 .riq-empty {
   border: 1px dashed var(--line);
