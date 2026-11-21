@@ -37,3 +37,58 @@ def load_resume(file) -> dict:
     #   return analyse_resume(text)                        # must match the resume_analysis shape
     return mock_data.get_resume_analysis()
 
+
+
+DEFAULT_WEIGHTS = {"skill": 0.5, "text": 0.3, "experience": 0.2}
+
+
+def load_job_file(file) -> str:
+    """Return the plain text of an uploaded job description (PDF or DOCX).
+
+    Raises ResumeLoadError with kind "empty", "unsupported", "corrupted" or "text_poor".
+    """
+    name = (getattr(file, "name", "") or "").lower()
+    if not name.endswith((".pdf", ".docx")):
+        raise ResumeLoadError("unsupported")
+    if getattr(file, "size", 1) == 0:
+        raise ResumeLoadError("empty")
+
+    # TODO: reuse the text extraction in src/resume_parser.py (same PyMuPDF / python-docx code):
+    #   from src.resume_parser import parse_resume
+    #   return parse_resume(file.getvalue(), file.name)
+    return "Data Analyst. Required: SQL, Python, Pandas, data visualization, Excel. Preferred: Power BI, statistics."
+
+
+def analyse_job(text: str) -> dict:
+    """Analyse job description text and return a job_analysis dict (see docs/ui_contracts.md)."""
+    # TODO: replace the mock below with src/job_parser.py, for example:
+    #   from src.job_parser import analyse_job as _analyse_job
+    #   return _analyse_job(text)
+    jobs = mock_data.get_jobs()
+    lowered = (text or "").lower()
+    for job in jobs:
+        if job["title"].lower() in lowered:
+            return job
+    return jobs[0]
+
+
+def score_match(resume_analysis: dict, job_analysis: dict, weights: dict | None = None) -> dict:
+    """Compare a resume with a job and return a match_result dict (see docs/ui_contracts.md).
+
+    weights is {"skill": float, "text": float, "experience": float} and should sum to 1.
+    """
+    weights = dict(weights or DEFAULT_WEIGHTS)
+
+    # TODO: replace the mock below with src/similarity_engine.py and src/match_scorer.py, for example:
+    #   from src.match_scorer import score_match as _score_match
+    #   return _score_match(resume_analysis, job_analysis, weights=weights)
+    results = mock_data.get_match_results()
+    result = results.get(job_analysis["title"]) or next(iter(results.values()))
+    c = result["components"]
+    skill = 0.7 * c["required_skill_coverage"] + 0.3 * c["preferred_skill_coverage"]
+    result["overall"] = round(
+        weights["skill"] * skill + weights["text"] * c["text_similarity"] + weights["experience"] * c["experience_relevance"],
+        1,
+    )
+    result["weights"] = weights
+    return result

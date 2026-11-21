@@ -52,12 +52,13 @@ def component_bars(components: dict) -> None:
     _html("".join(rows))
 
 
-def skill_chips(skills, kind: str = "matched") -> None:
-    """kind: 'matched' (teal), 'missing' (pink), 'extra' (neutral)."""
+def skill_chips(skills, kind: str = "matched", soft: bool = False) -> None:
+    """kind: 'matched' (teal), 'missing' (pink), 'extra' (neutral). soft lightens the fill to 50%."""
     if kind not in _CHIP_KINDS:
         raise ValueError(f"kind must be one of {sorted(_CHIP_KINDS)}")
     chips = "".join(f'<span class="riq-chip riq-chip-{kind}">{escape(str(s))}</span>' for s in skills)
-    _html(f'<div class="riq-chips">{chips}</div>')
+    extra = " riq-chips-soft" if soft else ""
+    _html(f'<div class="riq-chips{extra}">{chips}</div>')
 
 
 def section_status(sections: dict) -> None:

@@ -53,6 +53,10 @@ Template `resumeiq` is registered and set as the Plotly default by importing `ui
 | `jobs` | list of `job_analysis` | job descriptions added this session |
 | `match_results` | dict of `match_result` keyed by job title | results for the current resume against each job |
 
+`current_job` (a `job_analysis` dict) is the job being viewed on Job match. Saving a job appends it to `jobs` and stores its result in `match_results`.
+
+Newsreader is also used for the 24px job-title heading (`.riq-heading`) on result pages. `skill_chips(..., soft=True)` lightens missing chips to 50% (preferred gaps).
+
 `resume_file_id` (tuple of file name and size) is an internal marker so the same upload is not re-analysed on each rerun.
 
 The UI calls `src/` only through `ui/adapters.py` (`load_resume(file)`, which raises `ResumeLoadError` with kind `empty | unsupported | corrupted | text_poor`).
