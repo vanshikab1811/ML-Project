@@ -162,6 +162,21 @@ header[data-testid="stHeader"],
 .riq-reason { margin: 0.4rem 0 0.25rem 0; }
 [data-testid="stMarkdownContainer"] a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
 
+/* ---------- stats and rows ---------- */
+.riq-stats { display: flex; flex-wrap: wrap; gap: 2rem 3rem; margin: 0.5rem 0 1rem 0; }
+.riq-stat { min-width: 120px; max-width: 220px; }
+.riq-stat-value { font-family: "Newsreader", serif; font-weight: 400; font-size: 40px; line-height: 1.1; overflow-wrap: anywhere; }
+.riq-stat-label { font-size: 13px; opacity: 0.7; margin-top: 0.3rem; }
+.riq-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.riq-row-meta { font-size: 13px; opacity: 0.7; margin-left: auto; }
+.riq-row-score { font-family: "Newsreader", serif; font-size: 20px; min-width: 2.5rem; text-align: right; }
+
 /* ---------- empty state and note ---------- */
 .riq-empty {
   border: 1px dashed var(--line);
