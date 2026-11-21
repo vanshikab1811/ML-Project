@@ -51,3 +51,4 @@ recommendations = [
 | `get_jobs()` | list of `job_analysis` |
 | `get_match_results()` | dict of `match_result` keyed by job title |
 | `get_recommendations()` | `recommendations` list |
+

@@ -195,3 +195,4 @@ def get_match_results() -> dict:
 
 def get_recommendations() -> list:
     return deepcopy(_RECOMMENDATIONS)
+

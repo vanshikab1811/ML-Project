@@ -68,3 +68,4 @@ def setup_page(title: str) -> None:
     st.set_page_config(page_title=f"{title} | ResumeIQ", layout="wide", initial_sidebar_state="expanded")
     load_css()
     st.sidebar.markdown('<div class="riq-brand">ResumeIQ</div>', unsafe_allow_html=True)
+
