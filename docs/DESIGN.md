@@ -53,4 +53,9 @@ Template `resumeiq` is registered and set as the Plotly default by importing `ui
 | `jobs` | list of `job_analysis` | job descriptions added this session |
 | `match_results` | dict of `match_result` keyed by job title | results for the current resume against each job |
 
+`resume_file_id` (tuple of file name and size) is an internal marker so the same upload is not re-analysed on each rerun.
+
+The UI calls `src/` only through `ui/adapters.py` (`load_resume(file)`, which raises `ResumeLoadError` with kind `empty | unsupported | corrupted | text_poor`).
+
 Shapes are defined in `docs/ui_contracts.md`. UI code must not read anything else from `src/`.
+

@@ -60,9 +60,24 @@ def skill_chips(skills, kind: str = "matched") -> None:
     _html(f'<div class="riq-chips">{chips}</div>')
 
 
+def section_status(sections: dict) -> None:
+    """List of resume sections: filled dot when present, hollow dot when missing."""
+    rows = []
+    for name, present in sections.items():
+        dot = "riq-dot-on" if present else "riq-dot-off"
+        state = "Present" if present else "Missing"
+        rows.append(
+            '<div class="riq-status">'
+            f'<span class="riq-dot {dot}"></span><span>{escape(str(name).capitalize())}</span>'
+            f'<span class="riq-status-state">{state}</span></div>'
+        )
+    _html("".join(rows))
+
+
 def empty_state(message: str) -> None:
     _html(f'<div class="riq-empty">{escape(message)}</div>')
 
 
 def note(text: str) -> None:
     _html(f'<div class="riq-note"><p>{escape(text)}</p></div>')
+
